@@ -63,7 +63,7 @@ def start_signal_detect(client):
             print("Plz try agains")
 
 USERNAME = 'HeoRey'
-KEY = 'aio_ddPb315ep1qBs6wwAk1TOSEahLq2'
+KEY = 'aio_TEjN17FO7meqFOqQTrykGm00oAoh'
 
 if __name__ == "__main__":
     client = Adafruit_API(USERNAME, KEY, [])

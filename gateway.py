@@ -4,11 +4,11 @@ from threading import Thread
 from voice import *
 
 USERNAME = 'HeoRey'
-KEY = 'aio_ddPb315ep1qBs6wwAk1TOSEahLq2'
+KEY = 'aio_TEjN17FO7meqFOqQTrykGm00oAoh'
 
 feed_id_list = ['door','led','fan','led-changer','air-conditioner']
 
-client = Adafruit_API(USERNAME, KEY, feed_id_list)
+client = Adafruit_API(USERNAME, KEY, feed_id_list,"COM4")
 client.connect()
 
 

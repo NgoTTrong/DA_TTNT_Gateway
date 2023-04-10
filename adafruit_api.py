@@ -2,7 +2,7 @@ from Adafruit_IO import MQTTClient
 import sys
 from uart import Uart
 class Adafruit_API:
-    def __init__(self,username,key,feed_id_list,port = "COM4"):
+    def __init__(self,username,key,feed_id_list,port = None):
         self.username = username
         self.feed_id_list = feed_id_list
         self.key = key
@@ -55,8 +55,9 @@ class Adafruit_API:
         self.mqtt_client.on_message = self.message
         self.mqtt_client.on_subscribe = self.subscribe
         self.mqtt_client.connect()
-        self.uart = Uart(self.port,self)
-        self.uart.init_connection()
-        self.mqtt_client.loop_background()
+        if (self.port != None):
+            self.uart = Uart(self.port,self)
+            self.uart.init_connection()
+            self.mqtt_client.loop_background()
     def read_serial(self):
         self.uart.read_serial()
