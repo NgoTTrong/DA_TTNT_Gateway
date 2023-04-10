@@ -25,10 +25,10 @@ class Adafruit_API:
         if feed_id == 'led':
             if payload == '1':
                 print("Turn on light")
-                self.uart.write_message("A#")
+                self.uart.write_message("A")
             if payload == '0':
                 print("Turn off light")
-                self.uart.write_message("B#")
+                self.uart.write_message("B")
         if feed_id == 'door':
             if payload == '1':
                 print("Open door")
@@ -40,11 +40,11 @@ class Adafruit_API:
             print("C")
             self.uart.write_message("C")
         if feed_id == 'air-conditioner':
-            print("C"+payload+"#")
-            self.uart.write_message("C"+payload+"#")
+            print("C"+payload)
+            self.uart.write_message("C"+payload)
         if feed_id == 'led-changer':
-            print("F"+".".join([str(int(payload[i:i+2], 16)) for i in (1, 3, 5)])+"#")
-            self.uart.write_message("F"+".".join([str(int(payload[i:i+2], 16)) for i in (1, 3, 5)])+"#")    
+            print("F"+payload)
+            self.uart.write_message("F"+payload)
     def publish(self,feed_id,data):
         print("Publish to " + feed_id + " : " + str(data))
         self.mqtt_client.publish(feed_id,data)

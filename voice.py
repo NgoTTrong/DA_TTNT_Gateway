@@ -1,10 +1,11 @@
 import speech_recognition as sr
 import pyttsx3
+from adafruit_api import Adafruit_API
 
 r = sr.Recognizer()
 def SpeakText(command):
     # Initialize the engine
-    engine = pyttsx3.init()
+    engine = pyttsx3.init() 
     engine.say(command)
     engine.runAndWait()
 
@@ -34,10 +35,10 @@ def run(client):
                 client.publish('door','0')
             elif ("mở" in MyText and "máy" in MyText and "lạnh" in MyText):
                 SpeakText("Okey turn on the air conditioner")
-                client.publish('fan','1')
+                client.publish('air-conditioner','100')
             elif ("tắt" in MyText and "máy" in MyText and "lạnh" in MyText):
                 SpeakText("Okey turn off the air conditioner")
-                client.publish('fan','0')
+                client.publish('air-conditioner','0')
 
         except sr.RequestError as e:
             print("Could not request results; {0}".format(e))
@@ -60,3 +61,12 @@ def start_signal_detect(client):
             print("Could not request results; {0}".format(e))
         except sr.UnknownValueError:
             print("Plz try agains")
+
+USERNAME = 'HeoRey'
+KEY = 'aio_ddPb315ep1qBs6wwAk1TOSEahLq2'
+
+if __name__ == "__main__":
+    client = Adafruit_API(USERNAME, KEY, [])
+    client.connect()
+    while True:
+        start_signal_detect(client)
