@@ -15,7 +15,7 @@ def run(client):
         r.adjust_for_ambient_noise(source2, duration=0.2)
         print('Ready to record\n<----->')
         SpeakText("I'm here. Please command to me!")
-        audio2 = r.listen(source2)
+        audio2 = r.listen(source2,phrase_time_limit = 5)
         print('Audio captured\n<----->')
         try:
             MyText = r.recognize_google(audio2, language="vi-VN")
